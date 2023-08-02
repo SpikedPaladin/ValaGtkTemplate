@@ -6,19 +6,19 @@ template $ExampleMainWindow : Adw.ApplicationWindow {
     default-width: 400;
     default-height: 350;
     
-    Gtk.Box {
+    Box {
         orientation: vertical;
         
         Adw.HeaderBar {}
         
-        Gtk.Box {
+        Box {
             orientation: vertical;
             halign: center;
             valign: center;
             hexpand: true;
             vexpand: true;
             
-            Gtk.Label {
+            Label {
                 styles ["title-1"]
                 label: "Hello, world!";
             }
