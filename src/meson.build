@@ -4,10 +4,9 @@ project_deps = [
 ]
 
 project_sources = files(
-    'main.vala',
-    
-    'core/application.vala',
     'ui/main-window.vala',
+    
+    'app.vala',
 )
 
 executable(
