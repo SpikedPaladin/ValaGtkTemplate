@@ -16,5 +16,6 @@ executable(
     project_sources,
     vala_args: [ '--gresourcesdir=data/' ],
     dependencies: project_deps,
+    win_subsystem: 'windows',
     install: true,
 )
