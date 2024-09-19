@@ -10,7 +10,6 @@ blp_target = custom_target(
     command: [ find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@' ],
 )
 
-# Include shaders in executable
 project_resources = gnome.compile_resources(
     project_name + '-resources',
     project_name + '.gresource.xml',
