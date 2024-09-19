@@ -13,18 +13,18 @@ public class Example : Adw.Application {
     
     construct {
         application_id = "org.gtk.Example";
-        flags = ApplicationFlags.FLAGS_NONE;
+        flags = ApplicationFlags.DEFAULT_FLAGS;
     }
     
     public override void activate() {
         if (main_window != null) {
-            main_window.show();
+            main_window.present();
             return;
         }
         
         main_window = new MainWindow(this);
         
-        main_window.show();
+        main_window.present();
     }
     
     public static int main(string[] args) {
