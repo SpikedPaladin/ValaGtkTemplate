@@ -9,8 +9,8 @@ project_sources = files(
     'app.vala',
 )
 
-executable(
-    project_name,
+app = executable(
+    project_output,
     
     project_resources,
     project_sources,

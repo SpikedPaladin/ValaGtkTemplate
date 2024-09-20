@@ -11,7 +11,7 @@ blp_target = custom_target(
 )
 
 project_resources = gnome.compile_resources(
-    project_name + '-resources',
-    project_name + '.gresource.xml',
+    project_output + '-resources',
+    project_output + '.gresource.xml',
     dependencies: blp_target
 )

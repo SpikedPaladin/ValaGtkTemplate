@@ -1,0 +1,113 @@
+;----------
+; Includes
+
+    !include "MUI2.nsh"
+    !include "logiclib.nsh"
+
+;----------
+; Custom defines
+
+    !define NAME "@PROJECT_NAME@"
+    !define APPFILE "@EXECUTABLE_NAME@.exe"
+    !define VERSION "@PROJECT_VERSION@"
+    !define SLUG "${NAME} v${VERSION}"
+
+;----------
+; General
+
+    Name "${Name}"
+    BrandingText "${SLUG}"
+    OutFile "${Name} Setup.exe"
+    InstallDir "$PROGRAMFILES\${NAME}"
+    InstallDirRegKey HKCU "Software\${NAME}" ""
+    RequestExecutionLevel admin
+
+;----------
+; UI
+
+;    !define MUI_ICON "assets\example.ico"
+    !define MUI_HEADERIMAGE
+    !define MUI_ABORTWARNING
+    !define MUI_WELCOMEPAGE_TITLE "${SLUG} Setup"
+
+;----------
+; Pages
+
+    ; Installer pages
+    !insertmacro MUI_PAGE_WELCOME
+    !insertmacro MUI_PAGE_COMPONENTS
+    !insertmacro MUI_PAGE_DIRECTORY
+    !insertmacro MUI_PAGE_INSTFILES
+    !insertmacro MUI_PAGE_FINISH
+
+    ; Uninstaller pages
+    !insertmacro MUI_UNPAGE_CONFIRM
+    !insertmacro MUI_UNPAGE_INSTFILES
+
+;----------
+; Language
+
+    !insertmacro MUI_LANGUAGE "English"
+
+;----------
+; Section - Install App
+
+    Section "-hidden app"
+        SectionIn RO
+        SetOutPath "$INSTDIR\bin"
+        File /a /r "dist\bin\"
+        SetOutPath "$INSTDIR\lib"
+        File /a /r "dist\lib\"
+        SetOutPath "$INSTDIR\share"
+        File /a /r "dist\share\"
+        WriteRegStr HKCU "Software\${NAME}" "" $INSTDIR
+        WriteUninstaller "$INSTDIR\uninstall.exe"
+    SectionEnd
+
+;----------
+; Section - Shortcut
+
+    Section "Desktop Shortcut" DeskShort
+        CreateShortCut "$DESKTOP\${NAME}.lnk" "$INSTDIR\bin\${APPFILE}"
+    SectionEnd
+
+;----------
+; Remove empty parent directories
+
+    Function un.RMDirUP
+        !define RMDirUP '!insertmacro RMDirUPCall'
+
+        !macro RMDirUPCall _PATH
+            push '${_PATH}'
+            Call un.RMDirUP
+        !macroend
+
+        ; $0 - current folder
+        ClearErrors
+
+        Exch $0
+        ; DetailPrint "ASDF - $0\.."
+        RMDir "$0\.."
+
+        IfErrors Skip
+        ${RMDirUP} "$0\.."
+        Skip:
+            Pop $0
+    FunctionEnd
+
+;----------
+; Section - Uninstaller
+
+Section "Uninstall"
+    ; Delete Shortcut
+    Delete "$DESKTOP\${NAME}.lnk"
+
+    ; Delete Uninstall
+    Delete "$INSTDIR\uninstall.exe"
+
+    ; Delete Folder
+    RMDir /r "$INSTDIR"
+    ${RMDirUP} "$INSTDIR"
+
+    DeleteRegKey /ifempty HKCU "Software\${NAME}"
+SectionEnd
