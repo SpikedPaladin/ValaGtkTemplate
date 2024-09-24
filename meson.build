@@ -59,7 +59,7 @@ if host_machine.system() == 'windows'
 		output: '@0@ Setup.exe'.format(project_name),
 		command: [
 			'makensis',
-			'@input@'
+			'@INPUT@'
 		],
 		build_by_default: false,
 		depends: win_dist
