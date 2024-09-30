@@ -13,13 +13,14 @@ add_global_arguments([
 
 gnome = import('gnome')
 
-project_name = meson.project_name()
-project_version = meson.project_version()
-project_output = project_name.to_lower()
+name = meson.project_name()
+version = meson.project_version()
+output = name.to_lower()
 
 subdir('data')
 subdir('src')
 
+# Windows related build targets
 if host_machine.system() == 'windows'
 	dist_script_conf = configuration_data()
 	dist_script_conf.set_quoted('EXECUTABLE_NAME', project_output)
@@ -43,9 +44,9 @@ if host_machine.system() == 'windows'
 	)
 
 	installer_conf = configuration_data()
-	installer_conf.set('PROJECT_NAME', project_name)
-	installer_conf.set('EXECUTABLE_NAME', project_output)
-	installer_conf.set('PROJECT_VERSION', project_version)
+	installer_conf.set('PROJECT_NAME', name)
+	installer_conf.set('EXECUTABLE_NAME', output)
+	installer_conf.set('PROJECT_VERSION', version)
 
 	installer = configure_file(
 		input: 'build-aux/installer.nsi.in',
@@ -56,7 +57,7 @@ if host_machine.system() == 'windows'
 	custom_target(
 		'win-installer',
 		input: installer,
-		output: '@0@ Setup.exe'.format(project_name),
+		output: '@0@ Setup.exe'.format(name),
 		command: [
 			'makensis',
 			'@INPUT@'

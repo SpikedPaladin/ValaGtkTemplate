@@ -10,8 +10,9 @@ blp_target = custom_target(
     command: [ find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@' ],
 )
 
-project_resources = gnome.compile_resources(
-    project_output + '-resources',
-    project_output + '.gresource.xml',
+resources = gnome.compile_resources(
+    'resources',
+    'gresource.xml',
+    source_dir: meson.current_build_dir(),
     dependencies: blp_target
 )
