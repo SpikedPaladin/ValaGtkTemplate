@@ -1,5 +1,5 @@
 blueprints = files(
-    'ui/window.blp',
+    'ui/main-window.blp',
 )
 
 blp_target = custom_target(
