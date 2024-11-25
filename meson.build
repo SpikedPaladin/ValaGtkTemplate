@@ -23,7 +23,7 @@ subdir('src')
 # Windows related build targets
 if host_machine.system() == 'windows'
 	dist_script_conf = configuration_data()
-	dist_script_conf.set_quoted('EXECUTABLE_NAME', project_output)
+	dist_script_conf.set_quoted('EXECUTABLE_NAME', output)
 
 	dist_script = configure_file(
 		input: 'build-aux/win_dist.sh.in',
