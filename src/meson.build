@@ -1,6 +1,5 @@
 deps = [
-    dependency('gtk4'),
-    dependency('libadwaita-1'),
+    dependency('libadwaita-1')
 ]
 
 sources = files(
