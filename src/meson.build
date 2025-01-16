@@ -3,10 +3,10 @@ deps = [
 ]
 
 sources = files(
-    'ui/main-window.vala',
-    
     'app.vala',
 )
+
+subdir('ui')
 
 app = executable(
     output,

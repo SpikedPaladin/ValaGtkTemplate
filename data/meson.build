@@ -1,6 +1,4 @@
-blueprints = files(
-    'ui/main-window.blp',
-)
+subdir('ui')
 
 blp_target = custom_target(
     'blueprints',

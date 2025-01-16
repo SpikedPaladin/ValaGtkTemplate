@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/org/gtk/Example/ui/main-window.ui")]
+[GtkTemplate (ui = "/org/gtk/Example/main-window.ui")]
 public class MainWindow : Adw.ApplicationWindow {
     
     public MainWindow(Gtk.Application app) {
