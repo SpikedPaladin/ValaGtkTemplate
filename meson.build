@@ -3,7 +3,7 @@ project(
     
     ['c', 'vala'],
     version: '1.0',
-    meson_version: '>= 0.50.0',
+    meson_version: '>= 1.0',
 )
 
 add_global_arguments([
