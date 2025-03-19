@@ -13,9 +13,14 @@ add_global_arguments([
 
 gnome = import('gnome')
 
+id = 'org.gtk.Example'
 name = meson.project_name()
 version = meson.project_version()
 output = name.to_lower()
+
+
+config = configuration_data()
+config.set('ID', id)
 
 subdir('data')
 subdir('src')

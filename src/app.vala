@@ -12,7 +12,7 @@ public class Example : Adw.Application {
     }
     
     construct {
-        application_id = "org.gtk.Example";
+        application_id = Build.ID;
         flags = ApplicationFlags.DEFAULT_FLAGS;
     }
     
