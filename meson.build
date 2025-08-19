@@ -1,23 +1,19 @@
 project(
     'Example',
-    
+
     ['c', 'vala'],
     version: '1.0',
     meson_version: '>= 1.0',
 )
-
-add_global_arguments([
-	'-Wno-unused',
-	'-Wno-discarded-qualifiers'
-], language: 'c')
-
-gnome = import('gnome')
 
 id = 'org.gtk.Example'
 name = meson.project_name()
 version = meson.project_version()
 output = name.to_lower()
 
+add_project_arguments('-w', language: 'c')
+
+gnome = import('gnome')
 
 config = configuration_data()
 config.set('ID', id)

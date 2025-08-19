@@ -5,19 +5,19 @@ template $MainWindow : Adw.ApplicationWindow {
     title: "Example";
     default-width: 400;
     default-height: 350;
-    
-    Box {
-        orientation: vertical;
-        
+
+    Adw.ToolbarView {
+
+        [top]
         Adw.HeaderBar {}
-        
+
         Box {
             orientation: vertical;
             halign: center;
             valign: center;
             hexpand: true;
             vexpand: true;
-            
+
             Label {
                 styles ["title-1"]
                 label: "Hello, world!";

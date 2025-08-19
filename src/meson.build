@@ -12,9 +12,9 @@ sources = files(
 
 subdir('ui')
 
-executable(
+app = executable(
     output,
-    
+
     resources,
     sources,
     dependencies: deps,
